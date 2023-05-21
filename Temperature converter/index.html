@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Temperature Converter</title>
+  <style>
+  .container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+input[type="text"], select {
+  width: 100%;
+ 
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Temperature Converter</h1>
+    <input type="text" id="temperatureInput" placeholder="Enter temperature">
+    <select id="inputUnit">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+      <option value="kelvin">Kelvin</option>
+    </select>
+    <select id="outputUnit">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+      <option value="kelvin">Kelvin</option>
+    </select>
+    <button onclick="convertTemperature()">Convert</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+   function convertTemperature() {
+  var temperature = parseFloat(document.getElementById("temperatureInput").value);
+  var inputUnit = document.getElementById("inputUnit").value;
+  var outputUnit = document.getElementById("outputUnit").value;
+  var result;
+
+  // Perform temperature conversion based on the selected input and output units
+  if (inputUnit === "celsius") {
+    if (outputUnit === "fahrenheit") {
+      result = (temperature * 9/5) + 32;
+    } else if (outputUnit === "kelvin") {
+      result = temperature + 273.15;
+    } else {
+      result = temperature;
+    }
+  } else if (inputUnit === "fahrenheit") {
+    if (outputUnit === "celsius") {
+      result = (temperature - 32) * 5/9;
+    } else if (outputUnit === "kelvin") {
+      result = (temperature - 32) * 5/9 + 273.15;
+    } else {
+      result = temperature;
+    }
+  } else if (inputUnit === "kelvin") {
+    if (outputUnit === "celsius") {
+      result = temperature - 273.15;
+    } else if (outputUnit === "fahrenheit") {
+      result = (temperature - 273.15) * 9/5 + 32;
+    } else {
+      result = temperature;
+    }
+  }
+
+  // Display the result
+  document.getElementById("result").innerText = "Result: " + result.toFixed(2);
+}
+
+  </script>
+</body>
+</html>
